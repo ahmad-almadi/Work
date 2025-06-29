@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("header") %>
+
+        <meta charset="UTF-8">
+        <title>All Products</title>
+        <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <h1>All Products</h1>
+    <div class="product-list">
+        <% products.forEach(product=> { %>
+            <div class="product-item">
+                <p class="product-name">
+                    <%= product.Name %>
+                </p>
+                <p class="product-details">Category: <%= product.Category %>
+                </p>
+                <p class="product-details">Price: <%= product.Price %> JOD</p>
+                <p class="product-details">Description: <%= product.Description %>
+                </p>
+                <a class="delete" data-id="<%= product._id%>"><img src="/del.png" width="25px" height="30px"
+                        style="cursor:pointer;"></a>
+            </div>
+            <% }); %>
+    </div>
+    <script>
+        let delete_btn = document.querySelectorAll('.delete');
+        delete_btn.forEach(btn => {
+            btn.addEventListener("click", (event) => {
+                const endpoint = `/products/deleteProduct/${btn.dataset.id}`;
+                fetch(endpoint, {
+                    method: 'delete'
+                })
+                    .then((res) => res.json())
+                    .then((data) => window.location.href = data.redirect)
+                    .catch(err => console.log(err))
+            })
+        })
+    </script>
+    <%- include("footer") %>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <%- include("header")  %>
+        <link rel="stylesheet" href="/style2.css">
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="form-container">
+            <h2>Add New Item</h2>
+            <form action="/products/addNewProduct" method="post">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="Name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" name="Category" placeholder="Category">
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="text" name="Price" placeholder="Price">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" name="Description" placeholder="Description">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+                <%- include("footer")  %>
+
+    </body>
+
+    </html>

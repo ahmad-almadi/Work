@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("header") %>
+
+        <meta charset="UTF-8">
+        <title>Admin Panel - Home</title>
+        <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+    <h1>PROJECT 1: E-Commerce - Admin Panel</h1>
+
+    <div class="section">
+        <h2>🛒 PRODUCT APIs:</h2>
+        <ul>
+            <li><a href="/products/addNewProduct">Add new product</a></li>
+            <li><a href="/products/allProducts">Get all products</a></li>
+
+            <li>
+                <form action="/products/getProductById" method="get">
+                    <label>Get product by ID:</label>
+                    <input type="text" name="id" placeholder="Enter ID">
+                    <button type="submit">Search</button>
+                </form>
+            </li>
+
+            <li>
+                <form action="/products/getProductByName" method="get">
+                    <label>Get product by Name:</label>
+                    <input type="text" name="Name" placeholder="Enter Name">
+                    <button type="submit">Search</button>
+                </form>
+            </li>
+
+            <li>
+                <form action="/products/getProductByCategory" method="get">
+                    <label>Get product by Category:</label>
+                    <input type="text" name="Category" placeholder="Enter Category">
+                    <button type="submit">Search</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>👤 USER APIs:</h2>
+        <ul>
+            <li>
+                <form action="/users/findUserById" method="get">
+                    <label>Find user by ID:</label>
+                    <input type="text" name="id" placeholder="Enter ID">
+                    <button type="submit">Search</button>
+                </form>
+            </li>
+
+            <li>
+                <form action="/users/findUserByName" method="get">
+                    <label>Find user by Name:</label>
+                    <input type="text" name="name" placeholder="Enter Name">
+                    <button type="submit">Search</button>
+                </form>
+            </li>
+
+            <li>
+                <form action="/users/findUserByEmail" method="get">
+                    <label>Find user by Email:</label>
+                    <input type="text" name="email" placeholder="Enter Email">
+                    <button type="submit">Search</button>
+                </form>
+            </li>
+
+            <li>
+                <form action="/users/BlockUserById" method="get">
+                    <label>Block a user:</label>
+                    <input type="text" name="blockid" placeholder="Enter ID">
+                    <button type="submit">Block</button>
+                </form>
+            </li>
+
+            <li>
+                <form>
+                    <label>Remove a user:</label>
+                    <input id="id" type="text" placeholder="Enter ID">
+                    <button id="delete_btn" type="submit">Remove</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <%- include("footer") %>
+        <script>
+            const id = document.getElementById("id");
+            const delete_btn = document.getElementById("delete_btn");
+            delete_btn.addEventListener("click", (event) => {
+                event.preventDefault();
+                const endpoint = `/users/DeleteUserById/${id.value}`;
+                fetch(endpoint, {
+                    method: "DELETE"
+                })
+                    .then((res) => res.json())
+                    .then((data) => window.location.href = data.redirect)
+                    .catch(err => console.log(err));
+            })
+        </script>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            direction: rtl;
+            text-align: right;
+            /* padding: 20px; */
+            margin: 0;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+            padding: 30px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container p {
+            font-size: 18px;
+            margin: 10px 0;
+            text-align: left;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>
+    </title>
+    <link rel="stylesheet" href="/css/user.css">
+    <%- include("header") %>
+</head>
+
+<body>
+    <div class="container">
+        <% if (User) { %>
+            <h1>Users Information</h1>
+            <p><strong>Name :</strong>
+                <%= User.Name %>
+            </p>
+            <p><strong>Email :</strong>
+                <%= User.Email %>
+            </p>
+            <% } else { %>
+                <h2>User Not Found !!</h2>
+                <% } %>
+    </div>
+    <%- include("footer") %>
+
+</body>
+
+</html>

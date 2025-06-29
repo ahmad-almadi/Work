@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+    </title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 40px;
+            direction: ltr;
+        }
+
+        .products-details {
+            background-color: #fff;
+            max-width: 700px;
+            margin: auto;
+            padding: 30px 40px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .products-details h1 {
+            font-size: 26px;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .detail-row {
+            display: flex;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #444;
+        }
+
+        .label {
+            flex: 1;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .value {
+            flex: 2;
+        }
+
+        .price {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .delete-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #delete:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="products-details">
+        <% if(!products){%>
+            <h1>Wrong Inforamtion !!!</h1>
+            <% } else if(Array.isArray(products)){ %>
+                <% products.forEach(product=> { %>
+                    <h1>Product Details</h1>
+                    <div class="detail-row">
+                        <span class="label">Name:</span>
+                        <span class="value">
+                            <%= product.Name %>
+                        </span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="label">Category:</span>
+                        <span class="value">
+                            <%= product.Category %>
+                        </span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="label">Price:</span>
+                        <span class="value price">
+                            <%= product.Price %> USD
+                        </span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="label">Description:</span>
+                        <span class="value">
+                            <%= product.Description %>
+                        </span>
+                    </div>
+                    <% })} else { %>
+                        <h1>Product Details</h1>
+
+                        <div class="detail-row">
+                            <span class="label">Name:</span>
+                            <span class="value">
+                                <%= products.Name %>
+                            </span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="label">Category:</span>
+                            <span class="value">
+                                <%= products.Category %>
+                            </span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="label">Price:</span>
+                            <span class="value price">
+                                <%= products.Price %> USD
+                            </span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="label">Description:</span>
+                            <span class="value">
+                                <%= products.Description %>
+                            </span>
+                        </div>
+                        <% } %>
+    </div>
+
+</body>
+
+</html>

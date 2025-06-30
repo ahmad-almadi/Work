@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .file-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .file-container:hover {
+            transform: scale(1.02);
+        }
+
+        .file-container p {
+            margin: 8px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .file-container p span {
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <% files.forEach(file => { %>
+        <div class="file-container">
+            <p><span>Original name:</span> <%- file.originalName %></p>
+            <p><span>MIME type:</span> <%- file.mimeType %></p>
+            <p><span>Size:</span> <%- (file.size/1024/1024).toFixed(2) %> MG</p>
+            <a href="/download/<%- file._id %>">Download</a>
+        </div>
+    <% }) %>
+</body>
+
+</html>

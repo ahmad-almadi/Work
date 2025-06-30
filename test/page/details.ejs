@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%= title %>
+    </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            padding: 40px;
+            direction: rtl;
+        }
+
+        .blog-details {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .snippet {
+            font-style: italic;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blog-details">
+        <h1>
+            <%= blog.title %>
+        </h1>
+        <p class="snippet">
+            <%= blog.snippet %>
+        </p>
+        <p>
+            <%= blog.body %>
+        </p>
+        <p><small>تاريخ النشر: <%= blog.createdAt.toLocaleDateString('ar-EG') %></small></p>
+        <a id="delete" style="cursor: pointer; color: red;" data-doc="<%= blog._id %>"><img src="/del.png" width="50px"></a>
+    </div>
+    <script>
+        const del = document.getElementById("delete");
+        del.addEventListener("click", (event) => {
+            const endpoint = `/all-blog/${del.dataset.doc}`;
+                fetch(endpoint, {
+                    method: 'DELETE'
+                })
+                    .then((response) => response.json())//to change it from json to js obj //cause fetch is ajax request
+                .then((data) => window.location.href = data.redirect)
+                .catch(err => console.log(err));
+        });
+    </script>
+</body>
+
+</html>
